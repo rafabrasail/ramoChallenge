@@ -1,5 +1,40 @@
 {
+    "_version": "1.21.0",
+
+    "start_url": "<startUrl>",
+
     "sap.app": {
-        "id": "ui5"
+        "id": "sap.ui.demo",
+        "type": "application",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "dataAPI": {
+                "uri": "https://jsonplaceholder.typicode.com/todos",
+                "type": "JSON"
+            }
+        }
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "sap.ui.demo.view.App",
+            "type": "XML",
+            "id": "app"
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "models": {
+            "dataModel": {
+                "dataSource": "dataAPI"
+            }
+        }
     }
 }

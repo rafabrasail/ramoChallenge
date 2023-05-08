@@ -1,7 +1,12 @@
 sap.ui.define([
    "sap/ui/core/mvc/Controller",
-   "sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+   "sap/ui/model/json/JSONModel",
+   "sap/ui/model/Filter",
+   "sap/ui/model/FilterOperator"
+], function (Controller,
+	JSONModel,
+	Filter,
+	FilterOperator) {
    "use strict"
    return Controller.extend("sap.ui.demo.controller.App", {
       incrementBy1: function () {
@@ -11,38 +16,36 @@ sap.ui.define([
          myTextElem.setText(myNewNum)
       },
       onInit: function () {
-         let oModel = new JSONModel(sap.ui.require.toUrl("sap/ui/demo/Data.json"))
-         this.getView().setModel(oModel)
-      },
 
-      //everything below is for the optional popover
-      onAfterRendering: function () {
-         let that = this
-         window.setTimeout(function () {
-            let items = that.byId("episodeOverview").getItems()
-            for (let i = 0; i < items.length; i++) {
-               items[i].addEventDelegate({
-                  onmouseover: that._showPopover,
-                }, that)
+         var that = this
+         jQuery.ajax({
+            method: "GET",
+            url: "https://jsonplaceholder.typicode.com/todos",
+            success: function(data){
+
+               // 1) define model
+               var oModel = new sap.ui.model.json.JSONModel(data);
+
+               // 2) model set to to View
+               that.getView().setModel(oModel, "todosData");
+               //console.log(data)
+            }, 
+            error: function(error){
+               console.log(error)
             }
-         }, 1000)
+         })
       },
-      _showPopover: function (oEvent) {
-         let targetNode = oEvent.originalEvent.target
-         let listNode
-         if (targetNode.tagName != "LI") {
-            listNode = targetNode.parentElement.closest('li')
-         } else {
-            listNode = targetNode
-         }
-         let index = listNode.id.split("").reverse().join("").split("-")[0]
-         let oItem = this.byId("episodeOverview").getItems()[index]
-         let oDate = this.getView().getModel().getProperty(oItem.getBindingContext().sPath).published
-         this.byId("popoverText").setText(`Published: ${oDate}`)
-         this.byId("popover").openBy(listNode)
-      },
-      _clearPopover: function () {
-         this.byId("popover").close()
+      mySerach : function(oEvent) {
+         // get the search query entered by the user
+         var sQuery = oEvent.getParameter("newValue");
+         var oList = this.getView().byId("todosListId");
+         var oBinding = oList.getBinding("items");
+
+         // create a filter for the search query
+         var oFilter = new sap.ui.model.Filter("title", sap.ui.model.FilterOperator.Contains, sQuery);
+
+         // apply the filter to the list binding
+         oBinding.filter([oFilter]);
       }
    })
 })
