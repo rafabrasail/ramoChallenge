@@ -1,6 +1,16 @@
 <mvc:View
     controllerName="sap.ui.demo.controller.Detail"
     xmlns="sap.m"
-    xmlns:mvc="sap.ui.core.mvc">
-    
+    xmlns:mvc="sap.ui.core.mvc"
+>
+
+    <Page title="Detail page">
+        <Button text="Back" icon="sap-icon://arrow-left" press="onBack" />   
+
+        <ObjectHeader title="Detail" />
+        <Text text="details for the user" />
+    </Page>
+
+
+
 </mvc:View>

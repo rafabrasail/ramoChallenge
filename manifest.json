@@ -1,28 +1,29 @@
 {
-    "_version": "1.21.0",
+    "_version": "1.1.0",
 
     "start_url": "<startUrl>",
 
     "sap.app": {
         "id": "sap.ui.demo",
-        "type": "application",
         "applicationVersion": {
             "version": "1.0.0"
-        },
-        "title": "{{appTitle}}",
-        "description": "{{appDescription}}",
-        "dataSources": {
-            "dataAPI": {
-                "uri": "https://jsonplaceholder.typicode.com/todos",
-                "type": "JSON"
-            }
         }
     },
+
+    "sap.ui": {
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }       
+    },
+
     "sap.ui5": {
         "rootView": {
             "viewName": "sap.ui.demo.view.App",
             "type": "XML",
-            "id": "app"
+            "id": "app",
+            "async": true
         },
         "resources": {
             "css": [
@@ -31,9 +32,38 @@
                 }
             ]
         },
-        "models": {
-            "dataModel": {
-                "dataSource": "dataAPI"
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "sap.ui.demo.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "overview",
+                    "target": "overview"
+                },
+                {
+                    "pattern": "detail",
+                    "name": "detail",
+                    "target": "detail"
+                }
+            ],
+            "targets": {
+                "overview": {
+                    "viewId": "overview",
+                    "viewName": "Overview",
+                    "level": 0
+                },
+                "detail": {
+                    "viewId": "detail",
+                    "viewName": "Detail",
+                    "level": 1
+                }
             }
         }
     }

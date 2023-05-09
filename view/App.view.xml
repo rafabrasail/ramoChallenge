@@ -1,57 +1,12 @@
 <mvc:View
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc"
-   controllerName="sap.ui.demo.controller.App"
-   displayBlock="true"> 
+   controllerName="sap.ui.demo.controller.App" displayBlock="true"
+> 
 
 <Shell>
-   <App class="myAppDemoWT">
-      <pages>
-         <Page>
-            <content>
-               <Panel
-                   headerText="Table to bind data"
-                   class="sapUiResponsiveMargin"
-                   width="auto">
-                  <content>
-                     <Button
-                        text="increment by 1"
-                        press=".incrementBy1" />
-                        <Text id="counter" text="0" class="textCssLearn">
-                        </Text>
-
-                        <List items="{todosData>/}" 
-                           id="todosListId">
-                           <headerToolbar>
-                              <Toolbar>
-                                 <Title text="tasks"/>
-                                 <ToolbarSpacer />
-                                 <SearchField width="50%" liveChange=".mySerach" />
-                              </Toolbar>
-                           </headerToolbar>
-                           <items>
-                              <CustomListItem>
-                                 <content>
-                                    <VBox>
-                                       <items>
-                                          <ObjectListItem
-                                             title="{todosData>title}"
-                                             number="{todosData>id}"
-                                             numberUnit="completed"
-                                             icon="{= ${todosData>completed} ? 'sap-icon://accept' : 'sap-icon://decline'}"
-                                          />
-                                       </items>
-                                    </VBox>
-                                 </content>
-                              </CustomListItem>
-                           </items>
-                        </List>
-
-                  </content>
-               </Panel>
-            </content>
-         </Page>
-      </pages>
+   <App class="myAppDemoWT" id="app">
+      <!-- <mvc:XMLView viewName="sap.ui.demo.view.Overview"/> -->
    </App>
 </Shell>
 

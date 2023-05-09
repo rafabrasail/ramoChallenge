@@ -9,12 +9,6 @@ sap.ui.define([
 	FilterOperator) {
    "use strict"
    return Controller.extend("sap.ui.demo.controller.App", {
-      incrementBy1: function () {
-         let myTextElem = this.getView().byId("counter")
-         let myNum = parseInt(myTextElem.getText())
-         let myNewNum = myNum + 1
-         myTextElem.setText(myNewNum)
-      },
       onInit: function () {
 
          var that = this
@@ -46,6 +40,19 @@ sap.ui.define([
 
          // apply the filter to the list binding
          oBinding.filter([oFilter]);
+      },
+      onPress : function(oEvent) {
+         alert("Navigating to Detil of " + oEvent.getSource().getBindingContext());
+         // var oItem = oEvent.getSource()
+         // var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			// oRouter.navTo("detail", {
+         //    detailPath: oItem.getBindingContext("todosData").getProperty("id")
+         //    // detailPath: window.encodeURIComponent(oItem.getBindingContext("detail").getPath().substr(1))
+         // });
+      },
+      onToPage2 : function() {
+         this.getOwnerComponent().getRouter().navTo("detail");
       }
+
    })
 })

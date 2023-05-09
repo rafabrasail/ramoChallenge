@@ -1,0 +1,51 @@
+<mvc:View
+    controllerName="sap.ui.demo.controller.App"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
+
+    <!-- <pages> -->
+    <Page>
+        <content>
+            <Panel
+                headerText="Table to bind data"
+                class="sapUiResponsiveMargin"
+                width="auto">
+                <content>
+
+                <Button text="To the second Page" press="onToPage2" />
+                
+                    <List items="{todosData>/}"
+                        id="todosListId">
+                        <headerToolbar>
+                            <Toolbar>
+                                <Title text="Tasks" class="textCssLearn" />
+                                <ToolbarSpacer />
+                                <SearchField width="50%" liveChange=".mySerach" />
+                            </Toolbar>
+                        </headerToolbar>
+                        <items>
+                            <CustomListItem>
+                                <content>
+                                    <VBox>
+                                        <items>
+                                            <ObjectListItem
+                                                title="{todosData>title}"
+                                                number="{todosData>id}"
+                                                numberUnit="completed"
+                                                icon="{= ${todosData>completed} ? 'sap-icon://accept' : 'sap-icon://decline'}"
+                                                type="Navigation"
+                                                press="onPress"
+                                            />
+                                        </items>
+                                    </VBox>
+                                </content>
+                            </CustomListItem>
+                        </items>
+                    </List>
+
+                </content>
+            </Panel>
+        </content>
+    </Page>
+
+</mvc:View>
