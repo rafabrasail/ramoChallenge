@@ -29,7 +29,10 @@
                         <Text text="{todosDetail>/title}" />
                         <Text text="{todosDetail>/id}" />
                         <Text text="{todosDetail>/userId}" />
-                        <Text text="{= ${todosDetail>/completed} ? 'Yes' : 'No'}" />
+                        <ObjectStatus
+                            text="{= ${todosDetail>/completed} ? 'Completed' : 'Not Completed'}"
+                            icon="{= ${todosDetail>/completed} ? 'sap-icon://accept' : 'sap-icon://decline'}"
+                        /> 
                     </cells>
                 </ColumnListItem>
             </items>

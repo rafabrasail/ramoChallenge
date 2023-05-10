@@ -27,10 +27,12 @@ sap.ui.define([
       onPress : function(oEvent) {
          var oItem = oEvent.getSource()
          var oRouter = this.getOwnerComponent().getRouter()
+         var sDetailPath = oItem.getBindingContext("todosModel").getPath().substr(1);
+         var iDetailId = parseInt(sDetailPath) + 1;
 			oRouter.navTo("detail", {
-            detailPath: window.encodeURIComponent(oItem.getBindingContext("todosModel").getPath().substr(1)),
+            detailPath: window.encodeURIComponent(iDetailId.toString())
          })
-         // console.log(window.encodeURIComponent(oItem.getBindingContext("todosModel").getPath().substr(1)))
+         // console.log(typeof(window.encodeURIComponent(oItem.getBindingContext("todosModel").getPath().substr(1))))
       }
    })
 })

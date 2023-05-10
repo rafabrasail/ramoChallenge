@@ -28,8 +28,6 @@
                                         <items>
                                             <ObjectListItem
                                                 title="{todosModel>title}"
-                                                number="{todosModel>id}"
-                                                numberUnit="completed"
                                                 icon="{= ${todosModel>completed} ? 'sap-icon://accept' : 'sap-icon://decline'}"
                                                 type="Navigation"
                                                 press="onPress"
