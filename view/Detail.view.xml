@@ -4,13 +4,36 @@
     xmlns:mvc="sap.ui.core.mvc"
 >
 
+    <Button text="Back" icon="sap-icon://arrow-left" press="onBack" />
+
     <Page title="Detail page">
-        <Button text="Back" icon="sap-icon://arrow-left" press="onBack" />   
 
-        <ObjectHeader title="Detail" />
-        <Text text="details for the user" />
+        <Table>
+            <columns>
+                <Column>
+                    <Text text="Title" />
+                </Column>
+                <Column>
+                    <Text text="ID" />
+                </Column>
+                <Column>
+                    <Text text="User ID" />
+                </Column>
+                <Column>
+                    <Text text="Completed" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{todosDetail>/title}" />
+                        <Text text="{todosDetail>/id}" />
+                        <Text text="{todosDetail>/userId}" />
+                        <Text text="{= ${todosDetail>/completed} ? 'Yes' : 'No'}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
     </Page>
-
-
 
 </mvc:View>

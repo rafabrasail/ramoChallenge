@@ -7,6 +7,13 @@
         "id": "sap.ui.demo",
         "applicationVersion": {
             "version": "1.0.0"
+        },
+        "dataSources": {
+            "todosAPI": {
+                "uri": "https://jsonplaceholder.typicode.com/todos",
+                "type": "JSON"
+
+            }
         }
     },
 
@@ -32,6 +39,11 @@
                 }
             ]
         },
+        "models": {
+            "todosModel": {
+                "dataSource": "todosAPI"
+            }
+        },
         "routing": {
             "config": {
                 "routerClass": "sap.m.routing.Router",
@@ -48,7 +60,7 @@
                     "target": "overview"
                 },
                 {
-                    "pattern": "detail",
+                    "pattern": "detail/{detailPath}",
                     "name": "detail",
                     "target": "detail"
                 }

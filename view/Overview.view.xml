@@ -12,9 +12,7 @@
                 width="auto">
                 <content>
 
-                <Button text="To the second Page" press="onToPage2" />
-                
-                    <List items="{todosData>/}"
+                    <List items="{todosModel>/}"
                         id="todosListId">
                         <headerToolbar>
                             <Toolbar>
@@ -29,10 +27,10 @@
                                     <VBox>
                                         <items>
                                             <ObjectListItem
-                                                title="{todosData>title}"
-                                                number="{todosData>id}"
+                                                title="{todosModel>title}"
+                                                number="{todosModel>id}"
                                                 numberUnit="completed"
-                                                icon="{= ${todosData>completed} ? 'sap-icon://accept' : 'sap-icon://decline'}"
+                                                icon="{= ${todosModel>completed} ? 'sap-icon://accept' : 'sap-icon://decline'}"
                                                 type="Navigation"
                                                 press="onPress"
                                             />
